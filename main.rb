@@ -31,3 +31,6 @@ _____|_____|_____
      |     |     
      |     |     
 "
+
+player1 = Player.new('Player 1', 'X')
+player2 = Player.new('Player 2', 'O')
