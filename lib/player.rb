@@ -41,6 +41,18 @@ module PlayGame
     end
     puts game_board
   end
+
+  def tic_tac_toe?(game_board, symbol)
+      game_board[21] == symbol && game_board[21] == game_board[27] && game_board[27] == game_board[33] ||
+      game_board[75] == symbol && game_board[75] == game_board[81] && game_board[81] == game_board[87] ||
+      game_board[129] == symbol && game_board[129] == game_board[135] && game_board[135] == game_board[141] ||
+      game_board[21] == symbol && game_board[21] == game_board[75] && game_board[75] == game_board[129] ||
+      game_board[27] == symbol && game_board[27] == game_board[81] && game_board[81] == game_board[135] ||
+      game_board[33] == symbol && game_board[33] == game_board[87] && game_board[87] == game_board[141] ||
+      game_board[21] == symbol && game_board[21] == game_board[81] && game_board[81] == game_board[141] ||
+      game_board[33] == symbol && game_board[33] == game_board[81] && game_board[81] == game_board[129]   
+  end
+
   end
 
 class Player
@@ -51,4 +63,3 @@ class Player
     @name = name
   end
 end
-
