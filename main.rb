@@ -2,7 +2,7 @@
 
 require_relative 'lib/player'
 
-pre_game_board = "
+board = "
      |     |     
   1  |  2  |  3  
 _____|_____|_____
@@ -16,21 +16,15 @@ _____|_____|_____
 
 puts "\nIt's time for a game of Tic Tac Toe!"
 
-puts pre_game_board
+puts board
 
 puts "\nPlayer 1 is X \nPlayer 2 is O"
 
-game_board = "
-     |     |     
-     |     |     
-_____|_____|_____
-     |     |     
-     |     |     
-_____|_____|_____
-     |     |     
-     |     |     
-     |     |     
-"
+def clear_board(board)
+  board.gsub!(/[123456789XO]/, " ")
+end
+
+clear_board(board)
 
 player1 = Player.new('Player 1', 'X')
 player2 = Player.new('Player 2', 'O')
