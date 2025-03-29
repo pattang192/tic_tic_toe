@@ -47,4 +47,13 @@ def play_game(players, board, box)
   end
 end
 
+def end_game(board, players, box)
+  clear_board(board)
+  puts "Play again? y/n"
+  play_again = gets.chomp
+  if play_again == "y" then play_game(players, board, box)
+  else exit
+  end
+end
+
 play_game(players, board, box)
