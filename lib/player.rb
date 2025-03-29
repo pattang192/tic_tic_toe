@@ -1,35 +1,41 @@
 # player.rb
 
 module PlayGame
-  def get_play_position(game_board, boxes)
-      puts "#{self.name}, choose your position:"
+  def get_play_position(board, box)
+    puts "#{self.name}, choose your position:"
       play_position = gets.chomp.to_i - 1
-
-      until play_position.between?(0, 8) && boxes[play_position] == " "
+      
+      until play_position.between?(0, 8) && board[box[play_position]] == " "
         puts "Invalid input. #{self.name}, choose your position:"
         play_position = gets.chomp.to_i - 1
       end
       play_position
     end
 
-  def set_play_position(play_position, symbol, game_board)
-    box = [21, 27, 33, 75, 81, 87, 129, 135, 141] # indices game board's playable spots
-    game_board[box[play_position]] = symbol
-
-    puts game_board
+  def set_play_position(play_position, symbol, board, box)
+    board[box[play_position]] = symbol
+    puts board
   end
 
-  def tic_tac_toe?(game_board, symbol)
-      game_board[21] == symbol && game_board[21] == game_board[27] && game_board[27] == game_board[33] ||
-      game_board[75] == symbol && game_board[75] == game_board[81] && game_board[81] == game_board[87] ||
-      game_board[129] == symbol && game_board[129] == game_board[135] && game_board[135] == game_board[141] ||
-      game_board[21] == symbol && game_board[21] == game_board[75] && game_board[75] == game_board[129] ||
-      game_board[27] == symbol && game_board[27] == game_board[81] && game_board[81] == game_board[135] ||
-      game_board[33] == symbol && game_board[33] == game_board[87] && game_board[87] == game_board[141] ||
-      game_board[21] == symbol && game_board[21] == game_board[81] && game_board[81] == game_board[141] ||
-      game_board[33] == symbol && game_board[33] == game_board[81] && game_board[81] == game_board[129]   
+  def tic_tac_toe?(board, symbol)
+      board[21] == symbol && board[21] == board[27] && board[27] == board[33] ||
+      board[75] == symbol && board[75] == board[81] && board[81] == board[87] ||
+      board[129] == symbol && board[129] == board[135] && board[135] == board[141] ||
+      board[21] == symbol && board[21] == board[75] && board[75] == board[129] ||
+      board[27] == symbol && board[27] == board[81] && board[81] == board[135] ||
+      board[33] == symbol && board[33] == board[87] && board[87] == board[141] ||
+      board[21] == symbol && board[21] == board[81] && board[81] == board[141] ||
+      board[33] == symbol && board[33] == board[81] && board[81] == board[129]   
   end
 
+  def game_over?(board, symbol)
+    boxes = [board[21], board[27], board[33], board[75],
+      board[81], board[87], board[129], board[135], board[141]]
+  
+      self.tic_tac_toe?(board, symbol) ||
+      boxes.include?(" ") == false
+  end
+  
   end
 
 class Player
