@@ -4,15 +4,15 @@ require "rubocop"
 require_relative "lib/player"
 
 board = "
-     |     |     
-  1  |  2  |  3  
-_____|_____|_____
-     |     |     
-  4  |  5  |  6  
-_____|_____|_____
-     |     |     
-  7  |  8  |  9  
-     |     |     
+|     |     |     |
+|  1  |  2  |  3  |
+|_____|_____|_____|
+|     |     |     |
+|  4  |  5  |  6  |
+|_____|_____|_____|
+|     |     |     |
+|  7  |  8  |  9  |
+|     |     |     |
 "
 
 puts "\nIt's time for a game of Tic Tac Toe!"
@@ -52,7 +52,8 @@ def end_game(board, players, box)
   puts "Play again? y/n"
   play_again = gets.chomp
   if play_again == "y" then play_game(players, board, box)
-  else exit
+  else
+    exit
   end
 end
 
