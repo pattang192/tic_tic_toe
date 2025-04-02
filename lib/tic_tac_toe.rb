@@ -18,15 +18,14 @@ module TicTacToe
     puts board
   end
 
-  def tic_tac_toe?(board, board_index)
-    (board[board_index[1]] == symbol && board[board_index[2]] == board[board_index[1]] && board[board_index[3]] == board[board_index[2]]) ||
-      (board[board_index[1]] == symbol && board[board_index[4]] == board[board_index[1]] && board[board_index[7]] == board[board_index[4]]) ||
-      (board[board_index[1]] == symbol && board[board_index[5]] == board[board_index[1]] && board[board_index[9]] == board[board_index[5]]) ||
-      (board[board_index[5]] == symbol && board[board_index[2]] == board[board_index[5]] && board[board_index[8]] == board[board_index[2]]) ||
-      (board[board_index[5]] == symbol && board[board_index[3]] == board[board_index[5]] && board[board_index[7]] == board[board_index[3]]) ||
-      (board[board_index[5]] == symbol && board[board_index[4]] == board[board_index[5]] && board[board_index[6]] == board[board_index[4]]) ||
-      (board[board_index[9]] == symbol && board[board_index[8]] == board[board_index[9]] && board[board_index[7]] == board[board_index[8]]) ||
-      (board[board_index[9]] == symbol && board[board_index[6]] == board[board_index[9]] && board[board_index[3]] == board[board_index[6]])
+  def tic_tac_toe?(board, board_index, three_in_a_line)
+    winner = []
+    three_in_a_line.each do |line|
+      a, b, c = line
+      winner.push(name) if board[board_index[a]] == symbol && board[board_index[b]] == symbol &&
+                           board[board_index[c]] == symbol
+    end
+    winner.any?
   end
 
   def board_full?(board, board_index)
@@ -37,13 +36,13 @@ module TicTacToe
     spaces.empty?
   end
 
-  def game_over?(board, board_index)
-    tic_tac_toe?(board, board_index) ||
+  def game_over?(board, board_index, three_in_a_line)
+    tic_tac_toe?(board, board_index, three_in_a_line) ||
       board_full?(board, board_index)
   end
 
-  def declare_winner(board, board_index)
-    if tic_tac_toe?(board, board_index)
+  def declare_winner(board, board_index, three_in_a_line)
+    if tic_tac_toe?(board, board_index, three_in_a_line)
       puts "#{name} wins!"
     elsif board_full?(board, board_index)
       puts "It's a draw."
